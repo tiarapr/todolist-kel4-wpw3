@@ -14,17 +14,23 @@ const maxDescLength = 100
 <template>
   <div class="formInput">
     <form>
-      <h1>Buat Tugas</h1>
+      <h1>Add Task</h1>
       <div>
-        <label for="judul">Judul</label>
-        <input type="text" placeholder="Judul" id="judul" :maxlength="maxTitleLength" :class="{ inputError: titleInput.length === maxTitleLength }" :value="titleInput" @input="$emit('update:titleInput', $event.target.value)" />
+        <label for="title">Title</label>
+        <input type="text" 
+        placeholder="Title" 
+        id="title" :maxlength="maxTitleLength" :class="{ inputError: titleInput.length === maxTitleLength }" :value="titleInput" @input="$emit('update:titleInput', $event.target.value)" 
+        />
       </div>
       <div>
-        <label for="deskripsi">Deskripsi</label>
-        <textarea placeholder="Deskripsi" id="deskripsi" :maxlength="maxDescLength" :class="{ inputError: descInput.length === maxDescLength }" :value="descInput" @input="$emit('update:descInput', $event.target.value)"></textarea>
+        <label for="description">Description</label>
+        <textarea 
+        placeholder="Description" 
+        id="description" :maxlength="maxDescLength" :class="{ inputError: descInput.length === maxDescLength }" :value="descInput" @input="$emit('update:descInput', $event.target.value)">
+        </textarea>
       </div>
     </form>
-    <button type="button" @click="submitForm">Kirim</button>
+    <button type="button" @click="submitForm">Add</button>
   </div>
 </template>
 
@@ -34,8 +40,8 @@ const maxDescLength = 100
   flex-direction: column;
   justify-content: space-between;
   padding: 1.5em 2em;
-  background-color: #fffffe;
-  color: #0f0e17;
+  background-color: #2e2e2e;
+  color: #ff8906;
   border-radius: 0.5em
 }
 
@@ -56,17 +62,17 @@ const maxDescLength = 100
 
 .formInput label {
   font-weight: bold;
-  color: #0f0e17;
+  color: #fff;
   cursor: pointer;
 }
 
 .formInput input, .formInput textarea {
-  background-color: #0f0e17;
+  background-color: #fff;
   padding: 0.5em 1em;
-  color: #fffffe;
+  color: #2e2e2e;
   font-family: inherit;
   font-size: 1em;
-  border: 2px solid #0f0e17;
+  border: 2px solid #fff;
   border-radius: 0.25em;
   outline: none;
   box-sizing: border-box;

@@ -26,7 +26,7 @@ defineProps({
 .card {
   display: flex;
   flex-direction: column;
-  background-color: #fffffe;
+  background-color: #2e2e2e;
   padding: 1em;
   border-radius: 0.3em;
 }
@@ -55,11 +55,11 @@ defineProps({
 
 .card h2 {
   line-height: 1;
-  color: #0f0e17;
+  color: #ff8906;
 }
 
 .card p {
-  color: #2e2f3e;
+  color: #fff;
   font-weight: 300;
 }
 </style>

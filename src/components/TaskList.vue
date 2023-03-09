@@ -8,8 +8,8 @@ defineProps({
 </script>
 
 <template>
-  <div class="listTugas">
-    <h1>Daftar Tugas</h1>
+  <div class="listTask">
+    <h1>List Tasks</h1>
     <div class="cards">
       <Task :tasks="tasks" :removeTask="removeTask" />
     </div>
@@ -17,14 +17,14 @@ defineProps({
 </template>
 
 <style scoped>
-.listTugas {
+.listTask {
   flex-grow: 3;
 }
 
-.listTugas h1 {
-  text-align: center;
+.listTask h1 {
+  /* text-align: center; */
   margin-bottom: 1em;
-  color: #fffffe;
+  color: #ff8906;
 }
 
 .cards {
