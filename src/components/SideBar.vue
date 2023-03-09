@@ -26,7 +26,7 @@
         </textarea>
       </div>
     </form>
-    <button type="button" @click="addTodo">Done</button>
+    <button type="button" @click="addTodo">Add Task</button>
   </div>
 </template>
 
