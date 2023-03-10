@@ -2,29 +2,29 @@
 defineProps({
   titleInput: String,
   descInput: String,
-  submitForm: Function
+  formValidation: Function,
+  submitForm: Function,
+  maxTitleLength: Number,
+  maxDescLength: Number
 })
 
 const emit = defineEmits(['update:titleInput', 'update:descInput'])
-
-const maxTitleLength = 20
-const maxDescLength = 100
 </script>
 
 <template>
   <div class="formInput">
-    <form>
+    <form @submit.prevent="formValidation">
       <h1>Buat Tugas</h1>
       <div>
-        <label for="judul">Judul</label>
-        <input type="text" placeholder="Judul" id="judul" :maxlength="maxTitleLength" :class="{ inputError: titleInput.length === maxTitleLength }" :value="titleInput" @input="$emit('update:titleInput', $event.target.value)" />
+        <label for="judul">Judul <span class="charInfo">- {{ maxTitleLength - titleInput.length }} karakter tersisa</span></label>
+        <input type="text" placeholder="Judul" id="judul" :maxlength="maxTitleLength" :class="{ inputError: titleInput.length === maxTitleLength }" :value="titleInput" @input="$emit('update:titleInput', $event.target.value)" @keydown.enter.prevent="formValidation" />
       </div>
       <div>
-        <label for="deskripsi">Deskripsi</label>
-        <textarea placeholder="Deskripsi" id="deskripsi" :maxlength="maxDescLength" :class="{ inputError: descInput.length === maxDescLength }" :value="descInput" @input="$emit('update:descInput', $event.target.value)"></textarea>
+        <label for="deskripsi">Deskripsi <span class="charInfo">- {{ maxDescLength - descInput.length }} karakter tersisa</span></label>
+        <textarea placeholder="Deskripsi" id="deskripsi" :maxlength="maxDescLength" :class="{ inputError: descInput.length === maxDescLength }" :value="descInput" @input="$emit('update:descInput', $event.target.value)" @keydown.enter.prevent="formValidation"></textarea>
       </div>
     </form>
-    <button type="button" @click="submitForm">Kirim</button>
+    <button type="button" @click="formValidation">Kirim</button>
   </div>
 </template>
 
@@ -60,15 +60,20 @@ const maxDescLength = 100
   cursor: pointer;
 }
 
+.formInput .charInfo {
+  font-weight: 300;
+  color: #0f0e17;
+}
+
 .formInput input, .formInput textarea {
   background-color: #0f0e17;
   padding: 0.5em 1em;
   color: #fffffe;
   font-family: inherit;
   font-size: 1em;
-  border: 2px solid #0f0e17;
+  border: none;
   border-radius: 0.25em;
-  outline: none;
+  outline: 2px solid transparent;
   box-sizing: border-box;
 }
 
@@ -79,7 +84,7 @@ const maxDescLength = 100
 
 .formInput .inputError {
   color: #e53170;
-  border-color: #e53170;
+  outline-color: #e53170;
 }
 
 .formInput button{

@@ -7,8 +7,9 @@ defineProps({
 
 <template>
   <div class="card" v-for="(task, index) in tasks">
-    <div class="cardHeader">
-      <h2 v-text="task.title"></h2>
+    <h2 v-text="task.title"></h2>  
+    <p v-text="task.description"></p>
+    <div class="taskOption">
       <span @click="removeTask(index)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
           <polyline points="3 6 5 6 21 6"></polyline>
@@ -18,7 +19,6 @@ defineProps({
         </svg>
       </span>
     </div>
-    <p v-text="task.description"></p>
   </div>
 </template>
 
@@ -28,14 +28,8 @@ defineProps({
   flex-direction: column;
   background-color: #fffffe;
   padding: 1em;
-  border-radius: 0.3em;
-}
-
-.card .cardHeader {
-  display: flex;
-  place-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.8em;
+  position: relative;
+  overflow: hidden;
 }
 
 .card svg {
@@ -44,7 +38,6 @@ defineProps({
   stroke-width: 2;
   width: 22px;
   height: 22px;
-  cursor: pointer;
   opacity: 0.75;
   transition: opacity 200ms;
 }
@@ -56,10 +49,32 @@ defineProps({
 .card h2 {
   line-height: 1;
   color: #0f0e17;
+  margin-bottom: 0.5em;
 }
 
 .card p {
   color: #2e2f3e;
   font-weight: 300;
+}
+
+.card .taskOption {
+  position: absolute;
+  background-color: #0f0e17;
+  top: 0;
+  right: -2em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transition: right 500ms;
+}
+
+.card:hover .taskOption {
+  right: 0;
+}
+
+.card .taskOption span {
+  display: flex;
+  padding: 0.6em;
+  cursor: pointer;
 }
 </style>
