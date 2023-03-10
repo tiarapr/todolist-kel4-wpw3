@@ -30,7 +30,6 @@ function modalToggle() {
 }
 
 function formValidation(title, description, index = -1) {
-  console.log(title)
   if (title && description)
     submitForm({ title, description }, index)
   else
