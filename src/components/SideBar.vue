@@ -13,18 +13,18 @@ const emit = defineEmits(['update:titleInput', 'update:descInput'])
 
 <template>
   <div class="formInput">
-    <form @submit.prevent="formValidation">
+    <form @submit.prevent="formValidation(titleInput, descInput)">
       <h1>Buat Tugas</h1>
       <div>
         <label for="judul">Judul <span class="charInfo">- {{ maxTitleLength - titleInput.length }} karakter tersisa</span></label>
-        <input type="text" placeholder="Judul" id="judul" :maxlength="maxTitleLength" :class="{ inputError: titleInput.length === maxTitleLength }" :value="titleInput" @input="$emit('update:titleInput', $event.target.value)" @keydown.enter.prevent="formValidation" />
+        <input type="text" placeholder="Judul" id="judul" :maxlength="maxTitleLength" :class="{ inputError: titleInput.length === maxTitleLength }" :value="titleInput" @input="$emit('update:titleInput', $event.target.value)" @keydown.enter.prevent="formValidation(titleInput, descInput)" />
       </div>
       <div>
         <label for="deskripsi">Deskripsi <span class="charInfo">- {{ maxDescLength - descInput.length }} karakter tersisa</span></label>
-        <textarea placeholder="Deskripsi" id="deskripsi" :maxlength="maxDescLength" :class="{ inputError: descInput.length === maxDescLength }" :value="descInput" @input="$emit('update:descInput', $event.target.value)" @keydown.enter.prevent="formValidation"></textarea>
+        <textarea placeholder="Deskripsi" id="deskripsi" :maxlength="maxDescLength" :class="{ inputError: descInput.length === maxDescLength }" :value="descInput" @input="$emit('update:descInput', $event.target.value)" @keydown.enter.prevent="formValidation(titleInput, descInput)"></textarea>
       </div>
     </form>
-    <button type="button" @click="formValidation">Kirim</button>
+    <button type="button" @click="formValidation(titleInput, descInput)">Kirim</button>
   </div>
 </template>
 

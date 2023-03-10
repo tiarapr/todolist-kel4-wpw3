@@ -3,7 +3,8 @@ import Task from './Task.vue'
 
 defineProps({
   tasks: Array,
-  removeTask: Function
+  removeTask: Function,
+  editTask: Function
 })
 </script>
 
@@ -11,7 +12,7 @@ defineProps({
   <div class="listTugas">
     <h1>Daftar Tugas</h1>
     <div class="cards" v-if="tasks.length">
-      <Task :tasks="tasks" :removeTask="removeTask" />
+      <Task :tasks="tasks" :removeTask="removeTask" :editTask="editTask" />
     </div>
     <div class="cardNotFound" v-else>
       <p>Anda belum memiliki tugas.</p>
